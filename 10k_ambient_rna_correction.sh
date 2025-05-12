@@ -22,9 +22,9 @@ ml CUDA/11.7.0
 # perform correction
 ~/miniconda3/envs/cellbender_env/bin/cellbender \
     remove-background \
-        --input='${INPUT_FILE}' \
-        --output='${OUTPUT_FILE}' \
-        --expected-cells='${NCELLS}' \
+        --input=${INPUT_FILE} \
+        --output=${OUTPUT_FILE} \
+        --expected-cells=${NCELLS} \
         --cuda
 
 # done
