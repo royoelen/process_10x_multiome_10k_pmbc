@@ -35,6 +35,3 @@ with gzip.open(infile, 'rt') as infile:
 
 # close filehandle
 fh.close()
-
-# posthoc index with
-# tabix --preset=bed 10k_PBMC_Multiome_nextgem_Chromium_X_rounded_atac_fragments.tsv.gz

@@ -31,5 +31,10 @@ cd ${CPEAKS_DIR}
     --output ${OUTPUT_DIR} \
     --num_cores ${CORES}
 
+# zipping in the cpeaks pipeline does not use bgzip, as such we have to rezip before we can index
+gunzip 10k_PBMC_Multiome_nextgem_Chromium_X_rounded_atac_fragments.tsv.gz
+bgzip 10k_PBMC_Multiome_nextgem_Chromium_X_rounded_atac_fragments.tsv.gz
+tabix -p bed 10k_PBMC_Multiome_nextgem_Chromium_X_rounded_atac_fragments.tsv.gz
+
 # let them know we finished
 echo 'done'
