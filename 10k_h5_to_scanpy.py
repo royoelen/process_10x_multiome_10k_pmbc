@@ -25,8 +25,8 @@ import re
 ##################
 
 # set up paths
-matrix_loc='10k_PBMC_Multiome_nextgem_Chromium_X_cellbent_feature_bc_matrix.h5'
-scanpy_object_loc='10k_PBMC_Multiome_nextgem_Chromium_X_gex.h5ad'
+matrix_loc='cellbender/10k_PBMC_Multiome_nextgem_Chromium_X_cellbent_feature_bc_matrix_filtered.h5'
+scanpy_object_loc='scanpy/10k_PBMC_Multiome_nextgem_Chromium_X_gex.h5ad'
 
 
 #############
@@ -48,6 +48,7 @@ scanpy_object.raw = scanpy_object
 ###################
 
 # get QC metrics
+scanpy_object.var["mt"] = scanpy_object.var_names.str.startswith("MT-")
 sc.pp.calculate_qc_metrics(
     scanpy_object, qc_vars=["mt"], percent_top=None, log1p=False, inplace=True
 )
