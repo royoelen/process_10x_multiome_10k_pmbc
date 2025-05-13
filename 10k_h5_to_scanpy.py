@@ -83,7 +83,7 @@ sc.tl.leiden(
     resolution=0.9,
     random_state=0,
     n_iterations=2,
-    directed=False,
+    directed=False
 )
 # marker genes
 sc.tl.rank_genes_groups(scanpy_object, "leiden", method="t-test")

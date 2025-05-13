@@ -13,7 +13,7 @@ INPUT_FILE='/groups/umcg-franke-scrna/tmp04/external_datasets/10x_multiome_10k_p
 BARCODES_FILE='/groups/umcg-franke-scrna/tmp04/external_datasets/10x_multiome_10k_pbmcs/filtered_feature_bc_matrix/barcodes.tsv'
 
 # where the cpeaks path is
-CPEAKS_DIR='/groups/umcg-franke-scrna/tmp02/software/cPeaks/'
+CPEAKS_DIR='/groups/umcg-franke-scrna/tmp04/software/cPeaks/'
 
 # number of cores
 CORES=4
