@@ -14,7 +14,8 @@ library(Seurat)
 library(Signac)
 # this database is needed for annotations
 library(EnsDb.Hsapiens.v86)
-
+# for writing the matrix
+library(Matrix)
 
 ####################
 # Functions        #
@@ -60,6 +61,25 @@ read_cpeaks <- function(cpeaks_loc, cellranger_loc, annotations, atac_fragments_
   return(seurat_object)
 }
 
+
+export_atac_counts_object <- function(signac_object, out_folder) {
+  # features
+  features_gz <- gzfile(paste(out_folder, 'features.tsv.gz', sep = ''))
+  write.table(data.frame(x = rownames(signac_object@assays$peaks@counts)), features_gz, row.names = F, col.names = F, quote = F)
+  # barcodes
+  barcodes_gz <- gzfile(paste(out_folder, 'barcodes.tsv.gz', sep = ''))
+  write.table(data.frame(x = colnames(signac_object@assays$peaks@counts)), barcodes_gz, row.names = F, col.names = F, quote = F)
+  # metadata
+  metadata_gz <- gzfile(paste(out_folder, 'metadata.tsv.gz', sep = ''))
+  write.table(cbind(data.frame(bc = rownames(signac_object@meta.data)), signac_object@meta.data), metadata_gz, row.names = F, col.names = T, quote = F, sep = '\t')
+  # and finally the count matrix
+  counts_gz <- paste(out_folder, 'matrix.mtx', sep = '')
+  writeMM(signac_object@assays$peaks@counts, counts_gz)
+  # upon success
+  return(0)
+}
+
+
 ###################
 # Settings         #
 ####################
@@ -95,6 +115,8 @@ arc_metadata_loc <- '/groups/umcg-franke-scrna/tmp04/external_datasets/10x_multi
 objects_loc <- '/groups/umcg-franke-scrna/tmp04/external_datasets/10x_multiome_10k_pbmcs/signac/'
 object_raw_loc <- paste0(objects_loc, '10x_mo_10k_pbmc_mo_signac_raw.rds')
 object_processed_loc <- paste0(objects_loc, '10x_mo_10k_pbmc_mo_signac_processed.rds')
+# location of deconstructed data for pycistopic
+deconstructed_loc <- '/groups/umcg-franke-scrna/tmp04/external_datasets/10x_multiome_10k_pbmcs/pycistopic/deconstructed/'
 
 # read the object
 object_lane <- read_cpeaks(cpeaks_loc, cellranger_loc = frag_loc, annotations = annotations, atac_fragments_append = '10k_PBMC_Multiome_nextgem_Chromium_X_rounded_atac_fragments.tsv.gz')
@@ -169,3 +191,6 @@ object_lane <- NormalizeData(
 
 # save result
 saveRDS(object_lane, object_processed_loc)
+
+# and export
+export_atac_counts_object(object_lane, deconstructed_loc)
