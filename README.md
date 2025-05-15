@@ -38,9 +38,10 @@ These are the steps to process the data
 
 '*10k_round_fragments.py*'  round fragments coming from cellranger ARC, as there are paired reads, which should be counted as one\
 '*10k_cpeaks_align.sh*' align the counted fragments on the cpeaks reference\
-'*10k_cpeaks_to_signac.R*'  load the cpeaks counted fragments into Signac to do QC\
+'*10k_cpeaks_to_signac.R*'  load the cpeaks counted fragments into Signac to do QC
 
 
 ### SCENIC+ pipeline
+
 '*10k_pycistopic_modelling.ipynb*'  use Pycistopic to model topics based on the chromatin data, and find differentially open regions\
 '*10k_scenicplus_config.yaml*'  run SCENIC+ using the pycistopic object, the scanpy object and the DARs/topics
