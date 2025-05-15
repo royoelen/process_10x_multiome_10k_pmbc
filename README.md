@@ -44,4 +44,9 @@ These are the steps to process the data
 ### SCENIC+ pipeline
 
 '*10k_pycistopic_modelling.ipynb*'  use Pycistopic to model topics based on the chromatin data, and find differentially open regions\
-'*10k_scenicplus_config.yaml*'  run SCENIC+ using the pycistopic object, the scanpy object and the DARs/topics
+'*10k_scenicplus_config.yaml*'  run SCENIC+ using the pycistopic object, the scanpy object and the DARs/topics\
+'*10k_scenic_add_region_info_to_cres.R*'    add info from the topics/dars/celltypes to the SCENIC+ output and merge direct and extended
+
+
+### result
+'*eRegulons_both.tsv.gz*'   gzipped version of eRegulon outputs for direct and extended
