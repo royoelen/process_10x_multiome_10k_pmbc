@@ -118,7 +118,7 @@ dar_celltype_beds_loc <- '/groups/umcg-franke-scrna/tmp04/external_datasets/10x_
 
 
 # location of the direct file scenic output
-scenic_output_direct_loc <- '/groups/umcg-franke-scrna/tmp04/external_datasets/10x_multiome_10k_pbmcs/scenic/outs/eRegulons_extended.tsv'
+scenic_output_direct_loc <- '/groups/umcg-franke-scrna/tmp04/external_datasets/10x_multiome_10k_pbmcs/scenic/outs/eRegulon_direct.tsv'
 # read the scenic output
 scenic_output_direct <- read.table(scenic_output_direct_loc, header = T, sep = '\t')
 # location of the extended file scenic output
