@@ -18,10 +18,10 @@ library(Matrix)
 # to zip
 library(R.utils)
 
+
 ####################
 # Functions        #
 ####################
-
 
 #' Make a POSIX-safe String
 #'
@@ -38,6 +38,7 @@ make_posix_safe <- function(input_string) {
   posix_safe_string <- gsub("[^a-zA-Z0-9_-]", "_", input_string)
   return(posix_safe_string)
 }
+
 
 #' Write Data Sample
 #'
@@ -332,3 +333,20 @@ deconstruct_seurat_object(
   binarize_chromatin_matrix = F, 
   verbose = T
 )
+
+
+###############################
+# make course-specific object #
+###############################
+
+# remove any cell type annotation
+multiome@meta.data[['predicted.celltype.azi.l1.score']] <- NULL
+multiome@meta.data[['predicted.celltype.azi.l1']] <- NULL
+multiome@meta.data[['predicted.celltype.azi.l2.score']] <- NULL
+multiome@meta.data[['predicted.celltype.azi.l2']] <- NULL
+multiome@meta.data[['predicted.celltype.azi.l3.score']] <- NULL
+multiome@meta.data[['predicted.celltype.azi.l3']] <- NULL
+
+# and save the object
+multiome_processed_object_noct_loc <- '/groups/umcg-franke-scrna/tmp04/external_datasets/10x_multiome_10k_pbmcs/multimodal/10k_multimodal_object_processed_nocelltype.rds'
+saveRDS(multiome, multiome_processed_object_noct_loc)
