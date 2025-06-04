@@ -14,7 +14,7 @@ python 10k_calculate_atac_rna_betas.py \
     --output_folder /groups/umcg-franke-scrna/tmp02/external_datasets/10x_multiome_10k_pbmcs/naive_cres/S1/ \
     --use_gpu \
     --check_order_intersect \
-    --cre_loc /groups/umcg-franke-scrna/tmp04/projects/multiome/ongoing/qtl/cre_eqtl/eqtl_caqtl_overlap/confinements/region_to_peak_variant_overlaps.tsv.gz \
+    --cre_loc /groups/umcg-franke-scrna/tmp02/projects/multiome/ongoing/qtl/cre_eqtl/eqtl_caqtl_overlap/confinements/region_to_peak_variant_overlaps.tsv.gz \
     --n_perm 10
 
 """

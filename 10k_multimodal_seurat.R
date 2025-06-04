@@ -143,13 +143,18 @@ write_data_sample <- function(expression_data, chromatin_data, metadata, sample_
 #' deconstruct_seurat_object(seurat_object, regions, genes, "/path/to/output")
 #' }
 #' @export
-deconstruct_seurat_object <- function(seurat_object, regions, genes, output_dir, rna_assay='RNA', chromatin_assay='peaks', rna_layer='counts', chromatin_layer='counts', seurat_assignment_column='sample_final', binarize_chromatin_matrix=T, verbose=T) {
+deconstruct_seurat_object <- function(seurat_object, regions, genes, output_dir, rna_assay='RNA', chromatin_assay='peaks', rna_layer='counts', chromatin_layer='counts', seurat_assignment_column='sample_final', binarize_chromatin_matrix=T, remove_empty_entries=T, verbose=T) {
   # get the metadata
   metadata <- seurat_object@meta.data
   # get the RNA data
   expression_data <- GetAssayData(seurat_object, assay = rna_assay, layer = rna_layer)
   # get the chromatin data
   chromatin_data <- GetAssayData(seurat_object, assay = chromatin_assay, layer = chromatin_layer)
+  # remove empty entries
+  if (remove_empty_entries) {
+    expression_data <- expression_data[rowSums(expression_data) > 0, ]
+    chromatin_data <- chromatin_data[rowSums(chromatin_data) > 0, ]
+  }
   # check which regions we have
   regions_have <- intersect(rownames(chromatin_data), regions)
   # report on what is missing if present
@@ -330,7 +335,7 @@ deconstruct_seurat_object(
   rna_layer = 'counts', 
   chromatin_layer = 'counts', 
   seurat_assignment_column = 'sample', 
-  binarize_chromatin_matrix = F, 
+  binarize_chromatin_matrix = T, 
   verbose = T
 )
 
