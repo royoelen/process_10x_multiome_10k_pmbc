@@ -53,12 +53,13 @@ These are the steps to process the data
 
 '*10k_multimodal_seurat.R*' take the Signac ATAC and Seurat RNA objects and create a multimodal Seurat object. Then export the RNA and ATAC matrices for which there is information in both modalities
 '*10k_calculate_atac_rna_betas.py*' take exported ATAC and RNA matrices and fit a binomial model of the acessibility and expression
-'*10k_aggregated_creqtl_inputs.sh*' merge the outputs of the binomial model
+'*10k_aggregated_cre_inputs.sh*' merge the outputs of the binomial model
+'*10k_merge_beta_files.R*'  merge the p/beta/se outputs
 
 
 ### result
 '*eRegulons_both.tsv.gz*'   gzipped version of eRegulon outputs for direct and extended
-
+'*10k_merged.tsv.gz*'   gzipped version of native CRE mapping strategy
 
 
 

@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 ###################################################################
-#Script Name	  : 10k_aggregated_creqtl_inputs.sh
+#Script Name	  : 10k_aggregated_cre_inputs.sh
 #Description	  : aggregate all the CRE QTL inputs
 #Args           : cre location, folder containing per-sample p/beta/se, folder to output aggregated matrices, optional number of permutations to check for
 #Author       	: Roy Oelen
-#example        : 10k_aggregated_creqtl_inputs.sh \
+#example        : 10k_aggregated_cre_inputs.sh \
 #                 /groups/umcg-franke-scrna/tmp02/projects/multiome/ongoing/qtl/cre_eqtl/eqtl_caqtl_overlap/confinements/region_to_peak_variant_overlaps.tsv.gz \
 #                 /groups/umcg-franke-scrna/tmp02/external_datasets/10x_multiome_10k_pbmcs/naive_cres/ \
 #                 /groups/umcg-franke-scrna/tmp02/external_datasets/10x_multiome_10k_pbmcs/naive_cres/ \
