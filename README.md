@@ -15,6 +15,7 @@ SCENIC+ (python)
 cPeaks (python)
 Cellbender (python)
 
+
 ## steps
 
 These are the steps to process the data
@@ -48,5 +49,20 @@ These are the steps to process the data
 '*10k_scenic_add_region_info_to_cres.R*'    add info from the topics/dars/celltypes to the SCENIC+ output and merge direct and extended
 
 
+### naive CRE mapping
+
+'*10k_multimodal_seurat.R*' take the Signac ATAC and Seurat RNA objects and create a multimodal Seurat object. Then export the RNA and ATAC matrices for which there is information in both modalities
+'*10k_calculate_atac_rna_betas.py*' take exported ATAC and RNA matrices and fit a binomial model of the acessibility and expression
+'*10k_aggregated_creqtl_inputs.sh*' merge the outputs of the binomial model
+
+
 ### result
 '*eRegulons_both.tsv.gz*'   gzipped version of eRegulon outputs for direct and extended
+
+
+
+
+
+## LICENSE
+
+The code in this repository is licensed under GPLv3. This means usage and modification of this code requires proper statements about its contribution, as well as open source publication of any modifications. As small as this repo is, please do not pass of this code as your own.
