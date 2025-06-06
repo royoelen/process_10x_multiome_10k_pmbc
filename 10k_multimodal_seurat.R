@@ -274,7 +274,6 @@ multiome <- DietSeurat(rna)
 # set default assay
 DefaultAssay(multiome) <- 'RNA'
 # remove the assays we don't want
-multiome[['SCT']] <- NULL
 multiome[['prediction.score.celltype.azi.l1']] <- NULL
 multiome[['prediction.score.celltype.azi.l3']] <- NULL
 multiome[['celltype.azi.ADT']] <- NULL
@@ -339,6 +338,31 @@ deconstruct_seurat_object(
   verbose = T
 )
 
+# let's also do each cell type separately
+for (cell_type in unique(multiome@meta.data[['predicted.celltype.azi.l1']])) {
+  # make into a safe string
+  cell_type_safe <- gsub(' ', '_', cell_type)
+  # make the output directory
+  output_loc_ct <- paste0(multiome_disassembled_loc, '/', cell_type_safe, '/')
+  # make that directory
+  dir.create(output_loc_ct)
+  # subset the object to that cell type
+  multiome_ct <- multiome[, !is.na(multiome@meta.data[['predicted.celltype.azi.l1']]) & multiome@meta.data[['predicted.celltype.azi.l1']] == cell_type]
+  # output that
+  deconstruct_seurat_object(
+    seurat_object = multiome_ct, 
+    regions = unique(cre_pairs[['V1']]), 
+    genes = unique(cre_pairs[['V2']]), 
+    output_dir = output_loc_ct, 
+    rna_assay = 'RNA', 
+    chromatin_assay = 'peaks', 
+    rna_layer = 'counts', 
+    chromatin_layer = 'counts', 
+    seurat_assignment_column = 'sample', 
+    binarize_chromatin_matrix = T, 
+    verbose = T
+  )
+}
 
 ###############################
 # make course-specific object #
