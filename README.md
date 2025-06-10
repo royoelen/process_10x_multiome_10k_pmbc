@@ -59,7 +59,7 @@ These are the steps to process the data
 
 ### result
 '*eRegulons_both.tsv.gz*'   gzipped version of eRegulon outputs for direct and extended\
-'*10k_merged.tsv.gz*'   gzipped version of native CRE mapping strategy
+'*10k_naive_cres_all.tsv.gz*'   gzipped version of native CRE mapping strategy
 
 
 
